@@ -1,7 +1,7 @@
 # Applicant_Tracking_System
 
-Django REST Framework ভিত্তিক Job Portal / Applicant Tracking System (ATS)।  
-Docker Compose দিয়ে PostgreSQL, Redis, Celery, Flower সব একসাথে রান হয়।  
+Django REST Framework Job Portal/Applicant Tracking System (ATS)।  
+Docker Compose run PostgreSQL, Redis, Celery, Flower 
 
 ---
 
