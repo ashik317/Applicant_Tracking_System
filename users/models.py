@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from common.enums import UserRoleChoices, NameTitleChoices
+from common.models import CreatedAtUpdatedAtBaseModel
 
 
 class UserManager(BaseUserManager):
@@ -35,7 +36,7 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, CreatedAtUpdatedAtBaseModel):
     email = models.EmailField(db_index=True, unique=True, null=False, default=None)
     phone = models.CharField(db_index=True, max_length=20, unique=False, blank=True, null=True, default=None)
     title = models.CharField(max_length=64, choices=NameTitleChoices.choices, default=NameTitleChoices.MR)
@@ -51,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         editable=False,
         verbose_name=_("Nid No."),
-    help_text = _("National ID No. Example: YYYYXXXXXXXXXXXXX")
+        help_text=_("National ID No. Example: YYYYXXXXXXXXXXXXX")
     )
     is_staff = models.BooleanField(
         _("staff status"),
