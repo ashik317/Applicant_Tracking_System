@@ -1,0 +1,27 @@
+# Ignore environment variables file
+.env
+
+# Ignore IDE configuration files (for JetBrains IDEs like IntelliJ or PyCharm)
+.idea/
+idea/
+*/idea/
+
+# Ignore Python virtual environment directory
+.venv/
+venv/
+*/venv/
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore log files
+*.log
+
+# Ignore system files (macOS example)
+.DS_Store
+
+# Ignore database files (if any, for example SQLite)
+*.db
+*.sqlite3
