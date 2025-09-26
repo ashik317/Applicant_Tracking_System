@@ -1,7 +1,14 @@
 from django.db import models
 
-from common.enums import IndustryChoices, CompanySizeChoices, HiringStatusChoices, RemoteOptionChoices, \
-    BenefitsOfferedChoices, LegalStatusChoices, DocumentTypeChoices
+from common.enums import (
+    IndustryChoices,
+    CompanySizeChoices,
+    HiringStatusChoices,
+    RemoteOptionChoices,
+    BenefitsOfferedChoices,
+    LegalStatusChoices,
+    DocumentTypeChoices
+)
 from common.models import CreatedAtUpdatedAtBaseModel
 
 
@@ -77,7 +84,7 @@ class CompanyLocation(models.Model):
         return f"{self.city}, {self.country}"
 
 
-class CompanyDocument(models.Model):
+class CompanyDocument(CreatedAtUpdatedAtBaseModel):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="documents")
     document_type = models.CharField(
         max_length=100,
@@ -85,7 +92,6 @@ class CompanyDocument(models.Model):
         default=DocumentTypeChoices.TERMS_AND_CONDITIONS,
     )
     document = models.FileField(upload_to="company_documents/")
-    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.document_type} - {self.company.company_name}"
