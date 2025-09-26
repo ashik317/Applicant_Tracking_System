@@ -5,8 +5,6 @@ from django.db import models
 from autoslug import AutoSlugField
 from django.conf import settings
 
-# Dynamically fetch User model
-
 
 logger = logging.getLogger(__name__)
 USER_IP_ADDRESS = ""
