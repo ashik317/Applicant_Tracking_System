@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from common.enums import (
@@ -10,6 +11,8 @@ from common.enums import (
     DocumentTypeChoices
 )
 from common.models import CreatedAtUpdatedAtBaseModel
+from django.core.exceptions import ValidationError
+
 
 
 class Company(CreatedAtUpdatedAtBaseModel):
@@ -26,7 +29,7 @@ class Company(CreatedAtUpdatedAtBaseModel):
         blank=True
     )
     description = models.TextField(null=True, blank=True)
-    website_url = models.URLField(unique=True, null=True, blank=True)
+    website_url = models.URLField(null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     contact_email = models.EmailField(null=True, blank=True)
     contact_phone = models.CharField(max_length=50, null=True, blank=True)
@@ -42,11 +45,13 @@ class Company(CreatedAtUpdatedAtBaseModel):
         null=True,
         blank=True
     )
-    benefits_offered = models.CharField(
-        max_length=20,
-        choices=BenefitsOfferedChoices.choices,
-        null=True,
-        blank=True
+    benefits_offered = ArrayField(
+        base_field=models.CharField(
+            max_length=50,
+            choices=BenefitsOfferedChoices.choices,
+        ),
+        default=list,
+        blank=True,
     )
     logo = models.ImageField(upload_to='company_logos/', blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
@@ -97,5 +102,6 @@ class CompanyDocument(CreatedAtUpdatedAtBaseModel):
         return f"{self.document_type} - {self.company.company_name}"
 
     def clean(self):
-        if not self.document.name.endswith('.pdf', '.doc', '.docx'):
-            raise ValueError("Only PDF and Word documents are allowed.")
+        allowed = ('.pdf', '.doc', '.docx')
+        if self.document and not self.document.name.lower().endswith(allowed):
+            raise ValidationError("Only PDF and Word documents are allowed.")
