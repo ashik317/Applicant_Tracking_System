@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from common.enums import BenefitsOfferedChoices
 from companies.models import Company, Department, CompanyLocation, CompanyDocument
 
 
@@ -47,7 +48,12 @@ class CompanyDocumentSerializer(serializers.ModelSerializer):
         ]
 
 class CompanySerializer(serializers.ModelSerializer):
-
+    benefits_offered = serializers.ListField(
+        child=serializers.ChoiceField(choices=BenefitsOfferedChoices.choices),
+        required=False,
+        allow_empty=True,
+        default=list,
+    )
     class Meta:
         model = Company
         fields = [

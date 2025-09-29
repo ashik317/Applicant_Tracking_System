@@ -19,4 +19,6 @@ urlpatterns = [
     path("swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     # ReDoc
     path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    #Company urls
+    path("company/", include('companies.urls')),
 ]
