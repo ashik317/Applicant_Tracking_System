@@ -1,6 +1,6 @@
 from rest_framework import serializers
-
 from common.enums import BenefitsOfferedChoices
+from common.serializers import CommonUserSerializer
 from companies.models import Company, Department, CompanyLocation, CompanyDocument
 
 
@@ -27,6 +27,9 @@ class CompanyLocationSerializer(serializers.ModelSerializer):
         ]
 
 class CompanyDocumentSerializer(serializers.ModelSerializer):
+    document = serializers.FileField(required=False)
+    created_by = CommonUserSerializer(read_only=True)
+    updated_by = CommonUserSerializer(read_only=True)
     class Meta:
         model = CompanyDocument
         fields = [
@@ -54,6 +57,8 @@ class CompanySerializer(serializers.ModelSerializer):
         allow_empty=True,
         default=list,
     )
+    created_by = CommonUserSerializer(read_only=True)
+    updated_by = CommonUserSerializer(read_only=True)
     class Meta:
         model = Company
         fields = [
