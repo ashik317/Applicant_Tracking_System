@@ -32,7 +32,7 @@ class Company(CreatedAtUpdatedAtBaseModel):
     website_url = models.URLField(null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     contact_email = models.EmailField(null=True, blank=True)
-    contact_phone = models.CharField(max_length=50, null=True, blank=True)
+    contact_phone = models.PositiveIntegerField(null=True, blank=True, default=0)
     hiring_status = models.CharField(
         max_length=20,
         choices=HiringStatusChoices.choices,
@@ -59,13 +59,21 @@ class Company(CreatedAtUpdatedAtBaseModel):
     facebook_url = models.URLField(blank=True, null=True)
     instagram_url = models.URLField(blank=True, null=True)
     youtube_url = models.URLField(blank=True, null=True)
-    tax_id = models.CharField(max_length=100, blank=True, null=True)
-    registration_number = models.CharField(max_length=100, blank=True, null=True)
+    tax_id = models.PositiveIntegerField(blank=True, null=True, default=0)
+    registration_number = models.PositiveIntegerField(blank=True, null=True, default=0)
     legal_status = models.CharField(
         max_length=20,
         choices=LegalStatusChoices.choices,
         default=LegalStatusChoices.LLC,
     )
+
+    def clean(self):
+        if self.contact_phone and isinstance(self.contact_phone, str) and self.contact_phone.strip()=="":
+            raise ValidationError({'contact_phone': 'Cannot be an empty string.'})
+        if self.registration_number and isinstance(self.registration_number, str) and self.registration_number.strip()=="":
+            raise ValidationError({'registration_number': 'Cannot be an empty string.'})
+        if self.tax_id and isinstance(self.tax_id, str) and self.tax_id.strip()=="":
+            raise ValidationError({'tax_id': 'Cannot be an empty string.'})
 
     def __str__(self):
         return f'{self.company_name}'

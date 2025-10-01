@@ -20,5 +20,5 @@ urlpatterns = [
     # ReDoc
     path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     #Company urls
-    path("company/", include('companies.urls')),
+    path("", include('companies.urls')),
 ]
