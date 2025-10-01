@@ -25,3 +25,4 @@ __pycache__/
 # Ignore database files (if any, for example SQLite)
 *.db
 *.sqlite3
+*.pdf

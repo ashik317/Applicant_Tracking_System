@@ -1,13 +1,13 @@
 from rest_framework import serializers
 
-from common.serializers import UserRefSerializer
+from common.serializers import CommonUserSerializer
 from users.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     alias = serializers.UUIDField(read_only=True)
     password = serializers.CharField(write_only=True, required=False, allow_blank=True)
-    created_by = UserRefSerializer(read_only=True)
-    updated_by = UserRefSerializer(read_only=True)
+    created_by = CommonUserSerializer(read_only=True)
+    updated_by = CommonUserSerializer(read_only=True)
 
     class Meta:
         model = User
