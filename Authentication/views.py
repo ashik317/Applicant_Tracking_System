@@ -4,13 +4,13 @@ ListCreateAPIView,
 RetrieveUpdateDestroyAPIView
 )
 from rest_framework.permissions import IsAuthenticated
-from users.models import User
-from users.serializers import UserSerializer
+from Authentication.models import User
+from Authentication.serializers import UserSerializer
 
 
 class UserListCreateAPIView(ListCreateAPIView):
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return(

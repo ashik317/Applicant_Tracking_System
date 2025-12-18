@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import User
+from Authentication.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -41,14 +41,14 @@ class UserAdmin(admin.ModelAdmin):
     # Actions for bulk updates
     actions = ['make_users_active', 'make_users_inactive']
 
-    # Action to activate selected users
+    # Action to activate selected Authentication
     def make_users_active(self, request, queryset):
         queryset.update(is_active=True)
 
-    make_users_active.short_description = "Activate selected users"
+    make_users_active.short_description = "Activate selected Authentication"
 
-    # Action to deactivate selected users
+    # Action to deactivate selected Authentication
     def make_users_inactive(self, request, queryset):
         queryset.update(is_active=False)
 
-    make_users_inactive.short_description = "Deactivate selected users"
+    make_users_inactive.short_description = "Deactivate selected Authentication"

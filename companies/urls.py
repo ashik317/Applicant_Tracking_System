@@ -7,8 +7,8 @@ from companies.views import (
 )
 
 urlpatterns = [
-    path("company/list/", CompanyListCreateAPIView.as_view(), name="company-list-create"),
-    path("company/list/<uuid:alias>/", CompanyRetrieveUpdateDestroyAPIView.as_view(), name="company-detail"),
-    path("document/list/", DocumentListCreateAPIView.as_view(), name="document-list-create"),
-    path("document/list/<uuid:alias>/", DocumentRetrieveUpdateDestroyAPIView.as_view(), name="document-detail"),
+    path("company-list/", CompanyListCreateAPIView.as_view(), name="company-list-create"),
+    path("company-list/<uuid:alias>/", CompanyRetrieveUpdateDestroyAPIView.as_view(), name="company-detail"),
+    path("document-list/", DocumentListCreateAPIView.as_view(), name="document-list-create"),
+    path("document-list/<uuid:alias>/", DocumentRetrieveUpdateDestroyAPIView.as_view(), name="document-detail"),
 ]
