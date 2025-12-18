@@ -104,15 +104,10 @@ DATABASES = {
         "NAME": config("POSTGRES_DB"),
         "USER": config("POSTGRES_USER"),
         "PASSWORD": config("POSTGRES_PASSWORD"),
-        "HOST": (
-            config("POSTGRES_DOCKER_HOST")
-            if DJANGO_ENV == "docker"
-            else config("POSTGRES_LOCAL_HOST")
-        ),
+        "HOST": config("POSTGRES_HOST"),
         "PORT": config("POSTGRES_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
