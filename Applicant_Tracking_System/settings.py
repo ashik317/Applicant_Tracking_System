@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'autoslug',
-    'django_filters',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
+    'analytics.apps.AnalyticsConfig',
+    'applications.apps.ApplicationsConfig',
     'companies.apps.CompaniesConfig',
     'files.apps.FilesConfig',
     'interviews.apps.InterviewsConfig',
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
     'notifications.apps.NotificationsConfig',
     'reports.apps.ReportsConfig',
     'scorecards.apps.ScorecardsConfig',
-    'Authentication.apps.UsersConfig',
+    'users.apps.UsersConfig',
     'workflows.apps.WorkflowsConfig',
     'common.apps.CommonConfig'
 ]
@@ -91,7 +92,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Applicant_Tracking_System.wsgi.application'
 
-AUTH_USER_MODEL = "Authentication.User"
+AUTH_USER_MODEL = "users.User"
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
