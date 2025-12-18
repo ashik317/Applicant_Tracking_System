@@ -1,8 +1,10 @@
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView
 )
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 from companies.models import Company, CompanyDocument
 from companies.serializers import (
     CompanySerializer,
@@ -15,6 +17,27 @@ class CompanyListCreateAPIView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = CompanySerializer
     queryset = Company.objects.all()
+    filter_backends = [
+        DjangoFilterBackend,
+        SearchFilter,
+        OrderingFilter,
+    ]
+    filterset_fields = [
+        "company_name",
+        "contact_email",
+        "contact_phone",
+    ]
+    search_fields = [
+        "company_name",
+        "contact_email",
+        "contact_phone",
+    ]
+    ordering_fields = [
+        "company_name",
+        "contact_email",
+        "contact_phone",
+    ]
+    ordering = ["company_name"]
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

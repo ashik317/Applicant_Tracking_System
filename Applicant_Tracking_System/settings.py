@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'autoslug',
+    'django_filters',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
     'companies.apps.CompaniesConfig',
