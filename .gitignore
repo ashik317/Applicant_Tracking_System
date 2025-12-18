@@ -26,3 +26,16 @@ __pycache__/
 *.db
 *.sqlite3
 *.pdf
+
+# Ignore Django static files (collected)
+staticfiles/
+
+# Ignore Django media/uploads
+media/
+
+# Ignore Docker temporary files
+*.pid
+*.sock
+
+# Ignore entrypoint script (optional, only if you don't want it in Git)
+# entrypoint.sh
