@@ -38,4 +38,4 @@ media/
 *.sock
 
 # Ignore entrypoint script (optional, only if you don't want it in Git)
-# entrypoint.sh
+entrypoint.sh
