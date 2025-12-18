@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from common.serializers import CommonUserSerializer
-from users.models import User
+from Authentication.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     alias = serializers.UUIDField(read_only=True)

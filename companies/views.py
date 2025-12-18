@@ -1,9 +1,13 @@
-from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView
+)
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 from companies.models import Company, CompanyDocument
-from companies.serializers import CompanySerializer, CompanyDocumentSerializer
+from companies.serializers import (
+    CompanySerializer,
+    CompanyDocumentSerializer
+)
 
 
 #Create Company List Create api.
