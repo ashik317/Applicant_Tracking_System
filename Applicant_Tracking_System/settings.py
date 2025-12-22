@@ -39,13 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'django_filters',
     'drf_spectacular',
     'autoslug',
-    'django_filters',
+
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
+
     'companies.apps.CompaniesConfig',
     'files.apps.FilesConfig',
     'interviews.apps.InterviewsConfig',
@@ -55,8 +57,9 @@ INSTALLED_APPS = [
     'scorecards.apps.ScorecardsConfig',
     'Authentication.apps.UsersConfig',
     'workflows.apps.WorkflowsConfig',
-    'common.apps.CommonConfig'
+    'common.apps.CommonConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
